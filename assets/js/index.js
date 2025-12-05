@@ -186,11 +186,11 @@ conds.forEach(cond => cond.addEventListener('click', function (event) {
         this.classList.add('selected');
         console.log('filter', this.dataset.cond);
         dataCond = this.dataset.cond;
-        renderPubs(allPubs, dataCond);
+        renderPubs(allPubs);
     }
 }));
 document.querySelector('#by-time').addEventListener('change', function () {
-    renderPubs(allPubs, dataCond);
+    renderPubs(allPubs);
 });
 
 
