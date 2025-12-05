@@ -33,16 +33,12 @@ Promise.all([
             return record;
         }))
 })).then(value => {
-    renderNews(allNews = value[0], newsContainer);
-    renderTravels(allTravels = value[1], travelContainer);
-    allPubs = value[2];
+    allPubs = value[0];
     // console.log("allPubs", allPubs);
     let filter = document.querySelector('.chip.selected');
     dataCond = filter.dataset.cond;
     renderPubs(allPubs, dataCond);
-    renderCourses(value[3], courseContainer);
-    // console.log('people', value[4]);
-    renderPeople(value[4], peopleContainer);
+    
 });
 
 
