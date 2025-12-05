@@ -1,0 +1,8 @@
+title: wandering-isle
+email: kaeberlein.c@northeastern.edu
+description: Website of Asteria Kaeberlein
+github_username:  wandering-isle
+
+# Build settings
+gems:
+  - jekyll-seo-tag
