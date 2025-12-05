@@ -33,6 +33,7 @@ Promise.all([
             return record;
         }))
 })).then(value => {
+    allPubs = value[2];
     // console.log("allPubs", allPubs);
    renderPubs(allPubs);
     
