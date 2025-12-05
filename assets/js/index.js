@@ -47,59 +47,32 @@ function renderPubs(pubs) {
     // console.log(featured);
 
     // filter by type
-    let byType = document.querySelector('#by-time');
-    // console.log('byType',byType.checked);
-    if (byType.checked) {
-        filtered = filtered.reduce((acc, d) => {
-            if (!acc[d.year]) {
-                acc[d.year] = [];
-            }
-            acc[d.year].push(d);
-            return acc;
-        }, {});
-        // console.log("ACC", Object.entries(filtered));
-        filtered = Object.entries(filtered).map(group => {
-            group[1].sort((a, b) => b.title.localeCompare(a.title));
-            return group;
-        });
+    
+    
+    filtered = filtered.reduce((acc, d) => {
+        if (!acc[d.type]) {
+            acc[d.type] = [];
+        }
+        acc[d.type].push(d);
+        return acc;
+    }, {});
 
-        // d3.nest()
-        // .key(item=>item.year)
-        // .sortValues((a,b)=>b.title.localeCompare(a.title))
-        // .entries(filtered);
-        filtered.sort((a, b) => b[0] - a[0]);
-        // console.log("ACC", filtered);
-        document.querySelector("#by-time-switch").setAttribute("aria-pressed", true);
+    // console.log("ACC", Object.entries(filtered));
+    filtered = Object.entries(filtered).map(group => {
+        group[1].sort((a, b) => parseInt(b.year) - parseInt(a.year));
+        return group;
+    });
 
-    } else {
-        // filtered = d3.nest()
-        // .key(item=>item.type)
-        // .sortValues((a,b)=>parseInt(b.year)-parseInt(a.year))
-        // .entries(filtered);
-        filtered = filtered.reduce((acc, d) => {
-            if (!acc[d.type]) {
-                acc[d.type] = [];
-            }
-            acc[d.type].push(d);
-            return acc;
-        }, {});
-
-        // console.log("ACC", Object.entries(filtered));
-        filtered = Object.entries(filtered).map(group => {
-            group[1].sort((a, b) => parseInt(b.year) - parseInt(a.year));
-            return group;
-        });
-
-        // filtered =  filtered.reduce((acc, d, i)=>{
-        //     if (!acc[d.type]){
-        //         acc[d.type] = {
-        //             key:d.type,
-        //             values:[]
-        //         }
-        //     }
-        //     acc[d.year].values.push(d);
-        // }, {}).map(group=>group.values);
-        document.querySelector("#by-time-switch").setAttribute("aria-pressed", false);
+    // filtered =  filtered.reduce((acc, d, i)=>{
+    //     if (!acc[d.type]){
+    //         acc[d.type] = {
+    //             key:d.type,
+    //             values:[]
+    //         }
+    //     }
+    //     acc[d.year].values.push(d);
+    // }, {}).map(group=>group.values);
+    //document.querySelector("#by-time-switch").setAttribute("aria-pressed", false);
 
     }
     console.log("filtered publications", filtered);
