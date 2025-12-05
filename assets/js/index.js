@@ -33,14 +33,9 @@ Promise.all([
             return record;
         }))
 })).then(value => {
-    renderNews(allNews = value[0], newsContainer);
-    renderTravels(allTravels = value[1], travelContainer);
-    allPubs = value[2];
     // console.log("allPubs", allPubs);
    renderPubs(allPubs);
-    renderCourses(value[3], courseContainer);
-    // console.log('people', value[4]);
-    renderPeople(value[4], peopleContainer);
+    
 });
 
 
@@ -225,45 +220,9 @@ document.querySelector('.email').addEventListener('click', event => {
 
 let newsSearch = document.querySelector('.search input[name="news"');
 
-newsSearch.addEventListener('input', function (event) {
-    // renderNews(allNews.filter(''))
-    // console.log('value', this.value);
-    if (this.value != '') {
-        let filtered = allNews.filter(d => {
 
-            var tmp = document.createElement("div");
-            tmp.innerHTML = md.render(d.headline);
-            let date = formatDate(d.date)
-            let text = (tmp.textContent || tmp.innerText || "") + date;
-            console.log(text.toLowerCase(), this.value.toLowerCase());
-            return text.toLowerCase().includes(this.value.toLowerCase());
-        })
-        renderNews(filtered, newsContainer);
-    } else {
-        renderNews(allNews, newsContainer);
-    }
-});
 
-let travelSearch = document.querySelector('.search input[name="travel"');
 
-travelSearch.addEventListener('input', function (event) {
-    if (this.value != '') {
-        let filtered = allTravels.filter(d => {
-            var tmp = document.createElement("div");
-            tmp.innerHTML = md.render(d.headline);
-            let start = formatDate(d.start)
-            let end = formatDate(d.end)
-            let address = writeAddress(d);
-
-            let text = (tmp.textContent || tmp.innerText || "") + start + (start != end ? (' ~ ' + end) : '') + ' @ ' + address;
-            console.log(text.toLowerCase(), this.value.toLowerCase());
-            return text.toLowerCase().includes(this.value.toLowerCase());
-        })
-        renderTravels(filtered, travelContainer);
-    } else {
-        renderTravels(allTravels, travelContainer);
-    }
-});
 
 let pubSearch = document.querySelector('.search input[name="publication"');
 
