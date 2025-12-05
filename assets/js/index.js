@@ -33,47 +33,20 @@ Promise.all([
             return record;
         }))
 })).then(value => {
-    allPubs = value[0];
+    renderNews(allNews = value[0], newsContainer);
+    renderTravels(allTravels = value[1], travelContainer);
+    allPubs = value[2];
     // console.log("allPubs", allPubs);
-    let filter = document.querySelector('.chip.selected');
-    dataCond = filter.dataset.cond;
-    renderPubs(allPubs, dataCond);
-    
+   renderPubs(allPubs);
+    renderCourses(value[3], courseContainer);
+    // console.log('people', value[4]);
+    renderPeople(value[4], peopleContainer);
 });
 
 
-function renderPubs(pubs, cond) {
-    let filtered;
-    switch (cond) {
-        case 'pub-all':
-            filtered = pubs;
-            break;
-        case 'pub-first-author':
-            filtered = pubs.filter(item => item.authors.startsWith('Asteria Kaeberlein'));
-            break;
-        case 'pub-featured':
-            filtered = pubs.filter(item => item.featured == 'yes');
-            break;
-        case 'pub-thesis':// up to five years
-            filtered = pubs.filter(item => item.type.toLowerCase() == 'thesis');
-            break;
-        // case 'pub-recent':// up to five years
-        // let currentYear = (new Date()).getFullYear();
-        // filtered = pubs.filter(item=>parseInt(item.year)>=(currentYear-3));
-        // break;
-        case 'pub-awards':
-            filtered = pubs.filter(item => item.award);
-            break;
-        case 'pub-journal':
-            filtered = pubs.filter(item => item.type.toLowerCase() == 'journal');
-            break;
-        case 'pub-conference':
-            filtered = pubs.filter(item => item.type.toLowerCase() == 'conference');
-            break;
-        default:
-            filtered = pubs;
-
-    }
+function renderPubs(pubs) {
+    let filtered = pubs;
+    
     // console.log(pubs, cond);
     // let featured = pubs.filter(item=>item.featured=='yes');
     // console.log(featured);
