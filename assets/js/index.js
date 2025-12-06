@@ -72,7 +72,7 @@ function renderPubs(pubs) {
     filtered.forEach(group => {
         // console.log('item',group);
         //website,slides,video,code,data,software,supplemental,media,abstract
-        let html = group[1].reduce((html, d) => {
+        let html = group.reduce((html, d) => {
 
             // let path = ;
             // let path = `assets/files/publications/${d.type.toLowerCase()}/${d.title.replace(/\s/g, '-').replace(/[:?|,]/g, '').toLowerCase()}`;
